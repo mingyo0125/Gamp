@@ -10,4 +10,6 @@ int main()
 		nansu = rand() % 21 + 10; //10 ~ 30±îÁö
 		cout << nansu << endl;
 	}
+
+
 }
