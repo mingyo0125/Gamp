@@ -1,2 +1,4 @@
-﻿  시간맞히기게임.cpp
-  2023_03_20(Gamp).vcxproj -> C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_20(Gamp)\x64\Debug\2023_03_20(Gamp).exe
+﻿  숫자퍼즐.cpp
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_20(Gamp)\2023_03_20(Gamp)\숫자퍼즐.cpp(42,3): error C2660: 'RenderNubmer': 함수는 0개의 인수를 사용하지 않습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_20(Gamp)\2023_03_20(Gamp)\숫자퍼즐.cpp(27,6): message : 'RenderNubmer' 선언을 참조하십시오.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_20(Gamp)\2023_03_20(Gamp)\숫자퍼즐.cpp(42,3): message : 인수 목록 '()'을(를) 일치시키는 동안
