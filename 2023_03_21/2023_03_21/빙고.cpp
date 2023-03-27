@@ -54,12 +54,19 @@ void RenderNumber(int* _pNumber, int _iBingo, int _AiBingo)
 void AI(int * _pNumber)
 {
 	srand((unsigned int)time(NULL));
+
 	int a = rand() % 25;
 
 	for (int i = 0; i < 25; i++)
 	{
 		if (a == _pNumber[i])
 		{
+			if (_pNumber[i] == INT_MAX || _pNumber[i] == INT_MIN)
+			{
+				a = rand() % 25;
+				i--;
+				continue;
+			}
 			_pNumber[i] = INT_MIN;
 		}
 	}
