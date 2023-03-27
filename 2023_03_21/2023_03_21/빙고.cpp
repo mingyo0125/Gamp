@@ -1,7 +1,6 @@
 #include<iostream>
 #include<Windows.h>
 using namespace std;
-//셔플 사용해서 인풋이랑 같으면 그 인덱스를 max로 전환 멕스면 다시 뽑기
 enum class AI_MODE
 {
 	AM_EASY = 1,
@@ -24,9 +23,8 @@ void Init(int* _pNumber)
 		_pNumber[idx2] = iTemp;
 	}
 }
-
 // 값, 주소, 참조
-void RenderNumber(int* _pNumber, int _iBingo, int _AiBingo)
+void RenderNumber(int* _pNumber, int _iBingo)
 {
 	cout << "==================================" << endl;
 	cout << " |\t 빙고 게임\t " << endl;
@@ -40,39 +38,13 @@ void RenderNumber(int* _pNumber, int _iBingo, int _AiBingo)
 		{
 			if (_pNumber[i * 5 + j] == INT_MAX)
 				cout << "*" << "\t";
-			else if(_pNumber[i * 5 + j] == INT_MIN)
-				cout << "X" << "\t";
 			else
 				cout << _pNumber[i * 5 + j] << "\t";
 		}
 		cout << endl;
 	}
 	cout << "Bingo Line: " << _iBingo << endl;
-	cout << "AI Bingo Line: " << _AiBingo << endl;
 }
-
-void AI(int * _pNumber)
-{
-	srand((unsigned int)time(NULL));
-
-	int a = rand() % 25;
-
-	for (int i = 0; i < 25; i++)
-	{
-		if (a == _pNumber[i])
-		{
-			if (_pNumber[i] == INT_MAX || _pNumber[i] == INT_MIN)
-			{
-				a = rand() % 25;
-				i--;
-				continue;
-			}
-			_pNumber[i] = INT_MIN;
-		}
-	}
-
-}
-
 void Update(int* _pNumber, int& _iInput)
 {
 	// 1차원배열..
@@ -84,7 +56,6 @@ void Update(int* _pNumber, int& _iInput)
 		}
 	}
 }
-
 int CountBingo(int* _pNumber)
 {
 	// 빙고....
@@ -104,7 +75,6 @@ int CountBingo(int* _pNumber)
 			iCheckBingo++;
 		if (iVerStar == 5)
 			iCheckBingo++;
-
 	}
 	// 대각선
 	for (int i = 0; i < 25; i += 6)
@@ -123,69 +93,37 @@ int CountBingo(int* _pNumber)
 	if (iRTStar == 5)
 		iCheckBingo++;
 	return iCheckBingo;
-
 }
 
-int AICountBingo(int* _pNumber)
+AI_MODE SeleectAimode()
 {
-	int iCheckBingo = 0;
-	int iHorStar = 0, iVerStar = 0, iLTStar = 0, iRTStar = 0;
-	for (int i = 0; i < 5; i++)
-	{
-		iHorStar = iVerStar = 0;
-		for (int j = 0; j < 5; j++)
-		{
-			if (_pNumber[i * 5 + j] == INT_MIN)
-				iHorStar++;
-			if (_pNumber[j * 5 + i] == INT_MIN)
-				iVerStar++;
-		}
-		if (iHorStar == 5)
-			iCheckBingo++;
-		if (iVerStar == 5)
-			iCheckBingo++;
-
-	}
-	for (int i = 0; i < 25; i += 6)
-	{
-		if (_pNumber[i] == INT_MIN)
-			iLTStar++;
-	}
-	if (iLTStar == 5)
-		iCheckBingo++;
-
-	for (int i = 4; i <= 20; i += 4)
-	{
-		if (_pNumber[i] == INT_MIN)
-			iRTStar++;
-	}
-	if (iRTStar == 5)
-		iCheckBingo++;
-	return iCheckBingo;
-
+	cout << "==================================" << endl;
+	cout << " |\t 빙고 게임\t " << endl;
+	cout << "==================================" << endl;
+	cout << "빙고줄이 5줄 이상이 되면 게임에서 승리합니다." << endl;
+	cout << "==================================" << endl;
+	int Aimode;
+	cin >> iAimode;
 }
 
 int main()
 {
 	int iNumber[25] = {};
+	int iAiNumber[25] = {};
 	int iBingo = 0;
-	int AiBingo = 0;
+	int iAiBingo = 0;
 	int iInput;
 	Init(iNumber);
-
+	Init(iAiNumber);
+	AI_MODE eAimode = SeleectAimode();
 	while (true)
 	{
 		system("cls");
-		RenderNumber(iNumber, iBingo, AiBingo);
-
+		RenderNumber(iNumber, iBingo);
+		RenderNumber(iAiNumber, iAiBingo);
 		if (iBingo >= 5)
 		{
 			cout << "게임에서 승리하셨습니다." << endl;
-			break;
-		}
-		else if(AiBingo >= 5)
-		{
-			cout << "게임에서 패배하셨습니다." << endl;
 			break;
 		}
 		cout << "숫자를 입력하세요.(0: 종료)" << endl;
@@ -203,8 +141,7 @@ int main()
 		}
 		// Update() 칸을 채워준다, 채워진 칸인지 확인. 우리가 가지고 있는 숫자를 화면상에서 *로 바꿔줌.
 		Update(iNumber, iInput);
+		// 빙고가 다 되었는지. 정답처리.
 		iBingo = CountBingo(iNumber);
-		AiBingo = AICountBingo(iNumber);
-		AI(iNumber);
 	}
 }
