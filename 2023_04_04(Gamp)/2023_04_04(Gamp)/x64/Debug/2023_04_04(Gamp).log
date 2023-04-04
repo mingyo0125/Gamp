@@ -1,0 +1,5 @@
+﻿  Sound.cpp
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\2023_04_04(Gamp)\Sound.cpp(14,81): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\2023_04_04(Gamp)\Sound.cpp(20,14): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\2023_04_04(Gamp)\Sound.cpp(34,17): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  2023_04_04(Gamp).vcxproj -> C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\x64\Debug\2023_04_04(Gamp).exe

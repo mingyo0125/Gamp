@@ -1,4 +1,8 @@
 ﻿  FileName.cpp
-  add.cpp
+  asciiart.cpp
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_27\2023_03_27\asciiart.cpp(9,14): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_27\2023_03_27\asciiart.cpp(11,14): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_27\2023_03_27\asciiart.cpp(12,14): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_27\2023_03_27\asciiart.cpp(13,14): warning C4129: '_': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
   코드를 생성하고 있습니다...
   2023_03_27.vcxproj -> C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_03_27\x64\Debug\2023_03_27.exe
