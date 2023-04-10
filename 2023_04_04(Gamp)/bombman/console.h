@@ -2,8 +2,13 @@
 #include<Windows.h>
 void FullScreen();
 void Gotoxy(int x, int y);
+BOOL GotoxyBOOL(int x, int y);
+void GotoxyPlayer(int x, int y);
 void ConsoleCursor(bool, DWORD);
 void SetColor(int, int);
+int GetColor();
+int GetbgColor();
+
 enum class COLOR
 {
 	BLACK, BLUE, GREEN, SKYBLUE, RED,
