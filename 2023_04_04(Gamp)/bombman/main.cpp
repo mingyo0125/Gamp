@@ -58,33 +58,33 @@ int main()
 			cout << "1초가 지났다." << "\n";
 			Oldtime = Curtime;
 		}
-		//if (_kbhit())
-		//{
-		//	test = _getch();
-		//	if (test == 224)
-		//	{
-		//		test = _getch();
-		//		switch (test)
-		//		{
-		//		case 72:
-		//			//cout << "위쪽" << "\n";
-		//			y--;
-		//			break;
-		//		case 75:
-		//			//cout << "왼쪽" << "\n";
-		//			x--;
-		//			break;
-		//		case 77:
-		//			//cout << "오른쪽" << "\n";
-		//			x++;
-		//			break;
-		//		case 80:
-		//			//cout << "아래쪽" << "\n";
-		//			y++;
-		//			break;
-		//		}
-		//	}
-		//}
+		if (_kbhit())
+		{
+			test = _getch();
+			if (test == 224)
+			{
+				test = _getch();
+				switch (test)
+				{
+				case 72:
+					//cout << "위쪽" << "\n";
+					y--;
+					break;
+				case 75:
+					//cout << "왼쪽" << "\n";
+					x--;
+					break;
+				case 77:
+					//cout << "오른쪽" << "\n";
+					x++;
+					break;
+				case 80:
+					//cout << "아래쪽" << "\n";
+					y++;
+					break;
+				}
+			}
+		}
 
 #pragma region 키보드 입력
 		BOOL result = GotoxyBOOL(x, y);

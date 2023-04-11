@@ -128,13 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2023_04_10.cpp" />
-    <ClCompile Include="BombMan.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="console.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BombMan.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

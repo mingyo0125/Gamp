@@ -1,4 +1,2 @@
-﻿  main.cpp
-C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\bombman\main.cpp(4,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\bombman\main.cpp(43,6): warning C4101: 'test' :참조되지 않은 지역 변수입니다.
+﻿  StartScene.cpp
   bombman.vcxproj -> C:\Users\Owner\Documents\GitHub\2023\Gamp\2023_04_04(Gamp)\x64\Debug\bombman.exe

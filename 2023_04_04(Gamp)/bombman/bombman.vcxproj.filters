@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="console.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="2023_04_10.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BombMan.cpp">
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +32,10 @@
     <ClInclude Include="console.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BombMan.h">
+    <ClInclude Include="GameLogic.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
