@@ -79,7 +79,7 @@ void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer)
 			else if (_cMaze[i][j] == '0')
 				cout << "■";
 			else if (_cMaze[i][j] == '1')
-				cout << "  "; // 윈도우11 한칸S
+				cout << " "; // 윈도우11 한칸S
 			else if (_cMaze[i][j] == '2')
 				cout << "®";
 			else if (_cMaze[i][j] == '3')

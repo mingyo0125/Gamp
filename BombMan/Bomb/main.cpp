@@ -1,4 +1,7 @@
 #include<iostream>
+#include<vector>
+#include<Windows.h>
+#include<mmsystem.h>
 #include "console.h"
 #include "GameLogic.h"
 #include "StartScene.h"
@@ -10,6 +13,8 @@ int main()
 	PLAYER tPlayer = {};
 	POS tStartpos = {};
 	POS tEndpos = {};
+	vector<BOOM> vecBomb;
+	vector<POS> boomEffect;
 	Init(cMaze, &tPlayer, &tStartpos, &tEndpos);
 	system("mode con cols=80 lines=30");
 	// 아스키아트.
@@ -37,7 +42,15 @@ int main()
 	while (true) {
 		//system("cls");
 		Gotoxy(0, 0);
-		Update(cMaze, &tPlayer);
-		Render(cMaze, &tPlayer);
+		Update(cMaze, &tPlayer, vecBomb, boomEffect);
+		Render(cMaze, &tPlayer, boomEffect);
+
+		if (tPlayer.tPos.x == tEndpos.x &&
+			tPlayer.tPos.y == tEndpos.y)
+		{
+			PlaySound(TEXT("random.wav"), 0, SND_FILENAME | SND_ASYNC);
+			Sleep(1000);
+			break;
+		}
 	}
 }

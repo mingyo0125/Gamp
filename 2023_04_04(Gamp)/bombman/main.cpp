@@ -1,7 +1,11 @@
 #include<iostream>
+#include<Windows.h>
+#include<mmsystem.h>
 #include "console.h"
 #include "GameLogic.h"
 #include "StartScene.h"
+
+#pragma comment(lib, "winmm.lib")
 using namespace std;
 int main()
 {
@@ -39,5 +43,13 @@ int main()
 		Gotoxy(0, 0);
 		Update(cMaze, &tPlayer);
 		Render(cMaze, &tPlayer);
+
+		if (tPlayer.tPos.x == tEndpos.x &&
+			tPlayer.tPos.y == tEndpos.y)
+		{
+			PlaySound(TEXT("random.wav"), 0, SND_FILENAME | SND_ASYNC);
+			Sleep(1000);
+			break;
+		}
 	}
 }

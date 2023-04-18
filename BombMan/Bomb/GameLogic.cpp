@@ -1,6 +1,7 @@
-﻿#include"GameLogic.h"
-#include<iostream>
+﻿#include<iostream>
 #include <io.h>
+#include<vector>
+#include"GameLogic.h"
 #include <fcntl.h>
 #include"console.h"
 using namespace std;
@@ -51,20 +52,26 @@ void Init(char _cMaze[VERTICAL][HORIZON], PPLAYER
 	strcpy_s(_cMaze[19], "01111111111111111111");
 }
 
-void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer)
+void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, vector<BOOM> _vecBomb, vector<POS> _boomEffect)
 {
+	_pPlayer->tNewPos = _pPlayer->tPos;
 	// GetAsyncKeyState
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
-		--_pPlayer->tPos.y;
+		--_pPlayer->tNewPos.y;
+	Sleep(100);
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		++_pPlayer->tPos.y;
+		++_pPlayer->tNewPos.y;
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		--_pPlayer->tPos.x;
+		--_pPlayer->tNewPos.x;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		++_pPlayer->tPos.x;
-	Sleep(40);
+		++_pPlayer->tNewPos.x;
+
+	if (_cMaze[_pPlayer->tNewPos.y][_pPlayer->tNewPos.x] != '0')//0은 벽
+	{
+		_pPlayer->tPos = _pPlayer->tNewPos;
+	}
 }
-void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer)
+void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, vector<POS> _boomEffect)
 {
 	for (int i = 0; i < VERTICAL; i++)
 	{

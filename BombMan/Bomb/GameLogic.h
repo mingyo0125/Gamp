@@ -28,6 +28,7 @@ typedef struct _tagpos
 typedef struct Mystruct
 {
 	POS tPos; //À§Ä¡.
+	POS tNewPos;
 	int iBombPower;
 	int iBombcount;
 	bool bSlime;
@@ -43,12 +44,12 @@ typedef struct _tagboom
 }BOOM, *PBOOM;
 void Asciiart();
 void Init(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, PPOS _pStartpos, PPOS _pEndpos);
-void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer);
-void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer);
+void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, vector<BOOM> _vecBomb, vector<POS> _boomEffect);
+void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, vector<POS> _boomEffect);
 enum class MAPTYPE
 {
 	WALL = '0', 
 	ROAD = '1',
 	START = '2', 
-	END = '3',
+	END = '3'
 };

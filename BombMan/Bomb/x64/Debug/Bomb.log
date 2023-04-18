@@ -1,2 +1,13 @@
 ﻿  GameLogic.cpp
-  Bomb.vcxproj -> D:\Bomb\x64\Debug\Bomb.exe
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(47,63): error C2061: 구문 오류: 식별자 'vector'
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(48,63): error C2061: 구문 오류: 식별자 'vector'
+  main.cpp
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(47,63): error C2061: 구문 오류: 식별자 'vector'
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(48,63): error C2061: 구문 오류: 식별자 'vector'
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\main.cpp(45,3): error C2660: 'Update': 함수는 4개의 인수를 사용하지 않습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(47,6): message : 'Update' 선언을 참조하십시오.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\main.cpp(45,3): message : 인수 목록 '(char [20][21], PLAYER *, std::vector<BOOM,std::allocator<BOOM>>, std::vector<POS,std::allocator<POS>>)'을(를) 일치시키는 동안
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\main.cpp(46,3): error C2660: 'Render': 함수는 3개의 인수를 사용하지 않습니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\GameLogic.h(48,6): message : 'Render' 선언을 참조하십시오.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\BombMan\Bomb\main.cpp(46,3): message : 인수 목록 '(char [20][21], PLAYER *, std::vector<POS,std::allocator<POS>>)'을(를) 일치시키는 동안
+  코드를 생성하고 있습니다...
