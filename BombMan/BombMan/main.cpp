@@ -39,5 +39,7 @@ int main()
 		Gotoxy(0, 0);
 		Update(cMaze, &tPlayer);
 		Render(cMaze, &tPlayer);
+
+
 	}
 }
