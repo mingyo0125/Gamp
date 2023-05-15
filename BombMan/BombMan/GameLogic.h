@@ -25,6 +25,7 @@ typedef struct _tagpos
 typedef struct _tagplayer
 {
 	POS tPos;       // 위치.
+	POS tNewPos;    // 갱신된 위치.
 	int iBombPower; // 폭탄 파워.
 	int iBombcount; // 폭탄 개수.
 	bool bSlime;    // 슬라임.
@@ -38,13 +39,28 @@ typedef struct _tagboom
 	int x;
 	int y;
 	int life;
+	bool bDie;
 }BOOM, * PBOOM;
 void Asciiart();
+// 벡터가 템플릿 클래스야? => 클래스 템플릿
+// 구조체야? 
+
+#include<vector>
 void Init(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, PPOS _pStartpos, PPOS _pEndpos);
-void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer);
-void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer);
+void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, std::vector<BOOM>& _vecBomb, std::vector<POS>& _boomEffect);
+void Render(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, std::vector<POS>& _boomEffect);
+void BombCreate(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, std::vector<BOOM>& _vecBomb);
+void Fire(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, POS _boompos, std::vector<POS>& _boomEffect);
+void Event(std::vector<BOOM>& _vecBomb, std::vector<POS>& _boomEffect);
+bool Getitem(char _cItem, PPLAYER _pPlayer);
+
 enum class MAPTYPE
 {
 	WALL = '0', ROAD = '1',
-	START = '2', END = '3'
+	START = '2', END = '3',
+	WATERBOMB = 'b',
+	TWINKLE = 'p',
+	POWER = '4', SLIME = '5',
+	PUSH = '6'
+
 };
