@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Users\Owner\Documents\GitHub\2023\Gamp\PlatFormer\PlatFormer\Main.cpp(34,68): warning C4311: '형식 캐스트': 'MCI_PLAY_PARMS *'에서 'DWORD'(으)로 포인터가 잘립니다.
+C:\Users\Owner\Documents\GitHub\2023\Gamp\PlatFormer\PlatFormer\Main.cpp(34,68): warning C4302: '형식 캐스트': 'MCI_PLAY_PARMS *'에서 'DWORD'(으)로 잘립니다.
+  PlatFormer.vcxproj -> C:\Users\Owner\Documents\GitHub\2023\Gamp\PlatFormer\x64\Debug\PlatFormer.exe
