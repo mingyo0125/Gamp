@@ -116,10 +116,6 @@ void Update(char _cMaze[VERTICAL][HORIZON], PPLAYER _pPlayer, vector<BOOM>& _vec
 		_pPlayer->tPos = _pPlayer->tNewPos;
 	}
 
-
-
-
-
 	if (Getitem(_cMaze[_pPlayer->tPos.y][_pPlayer->tPos.x], _pPlayer))
 		_cMaze[_pPlayer->tPos.y][_pPlayer->tPos.x] = (char)MAPTYPE::ROAD;
 
