@@ -81,7 +81,7 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
 	_pPlayer->newPos.x = std::clamp(_pPlayer->newPos.x, 0, HORIZON - 2);
 	_pPlayer->newPos.y = std::clamp(_pPlayer->newPos.y, 0, VERTICAL - 1);
 
-	if (_map[_pPlayer->newPos.y][_pPlayer->newPos.x] != '0') // 0은 벽.
+	if (_map[_pPlayer->newPos.y][_pPlayer->newPos.x] != (char)MAPTYPE::WALL) // 0은 벽.
 	{
 		_pPlayer->playerPos = _pPlayer->newPos;
 	}
@@ -90,7 +90,9 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
 
 void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 {
-
+	const string cellSpacing = " ";
+	cout << cellSpacing;
+	cout << cellSpacing;
 	for (int i = 0; i < VERTICAL; i++)
 	{
 		for (int j = 0; j < HORIZON; j++)
@@ -103,9 +105,11 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
 			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
 			//else { cout << "i: " << i << " " << "j: " << j << " "; }
-			                                              
+			
+			cout << cellSpacing;
 		}
 	}
+
 }
 
 
