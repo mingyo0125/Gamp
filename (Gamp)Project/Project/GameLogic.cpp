@@ -31,7 +31,7 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	*playerPos = setplayer;
 
 	// string copy.. 0: 벽, 1: 길, 2: 시작지점, 3: 끝지점
-	strcpy_s(_map[0], "000000000000000000000000000002");
+	strcpy_s(_map[0], "000000000000000000000000000002"); //30
 	strcpy_s(_map[1], "011111111111111111111111111102");
 	strcpy_s(_map[2], "011111111111111111111111111102");
 	strcpy_s(_map[3], "011111111111111111111111111102");
@@ -51,6 +51,15 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[17], "011111111111111111111111111102");
 	strcpy_s(_map[18], "011111111111111111111111111102");
 	strcpy_s(_map[19], "000000000000000000000000000002");
+
+	int verRand, horiRand;
+
+	srand(time(NULL));
+
+	verRand = rand() % 28;
+	horiRand = rand() % 18;
+
+	_map[verRand][horiRand] = (char)MAPTYPE::Caffeine;
 }
 
 void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
@@ -77,11 +86,11 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
 		++_pPlayer->newPos.x;
 		Sleep(10);
 	}
-	// 벽 밖인지 clamp
+
 	_pPlayer->newPos.x = std::clamp(_pPlayer->newPos.x, 0, HORIZON - 2);
 	_pPlayer->newPos.y = std::clamp(_pPlayer->newPos.y, 0, VERTICAL - 1);
 
-	if (_map[_pPlayer->newPos.y][_pPlayer->newPos.x] != (char)MAPTYPE::WALL) // 0은 벽.
+	if (_map[_pPlayer->newPos.y][_pPlayer->newPos.x] != (char)MAPTYPE::WALL)
 	{
 		_pPlayer->playerPos = _pPlayer->newPos;
 	}
@@ -93,6 +102,7 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 	const string cellSpacing = " ";
 	cout << cellSpacing;
 	cout << cellSpacing;
+
 	for (int i = 0; i < VERTICAL; i++)
 	{
 		for (int j = 0; j < HORIZON; j++)
@@ -101,8 +111,13 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 			{
 				cout << "●";
 			}
-			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
+			/*else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
+			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << "*"; }
+			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }*/
+			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << (char)MAPTYPE::WALL; }
+			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << (char)MAPTYPE::ROAD; }
+			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << (char)MAPTYPE::Caffeine; }
 			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
 			//else { cout << "i: " << i << " " << "j: " << j << " "; }
 			

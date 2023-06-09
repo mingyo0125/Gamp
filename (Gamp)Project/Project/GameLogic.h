@@ -20,7 +20,7 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player);
 
 enum class MAPTYPE
 {
-	WALL = '0', ROAD = '1', ENDL = '2',
+	WALL = '0', ROAD = '1', ENDL = '2', Caffeine = '3',
 };
 
 void Init(char _map[VERTICAL][HORIZON], PPLAYER _player, PPOS _sttartpos);
