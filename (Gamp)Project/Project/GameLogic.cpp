@@ -52,14 +52,16 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[18], "011111111111111111111111111102");
 	strcpy_s(_map[19], "000000000000000000000000000002");
 
+	srand((unsigned int)time(NULL));
+
 	int verRand, horiRand;
+	do { verRand = rand() % VERTICAL; }
+	while (verRand == 0 || verRand == 29 || verRand == 30);
 
-	srand(time(NULL));
-
-	verRand = rand() % 28;
-	horiRand = rand() % 18;
+	do { horiRand = rand() % HORIZON; } while (horiRand == 0 || horiRand == 19);
 
 	_map[verRand][horiRand] = (char)MAPTYPE::Caffeine;
+
 }
 
 void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
@@ -111,14 +113,14 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 			{
 				cout << "●";
 			}
-			/*else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
-			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
 			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << "*"; }
-			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }*/
-			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << (char)MAPTYPE::WALL; }
+			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
+			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
+			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
+			/*else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << (char)MAPTYPE::WALL; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << (char)MAPTYPE::ROAD; }
 			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << (char)MAPTYPE::Caffeine; }
-			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
+			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }*/
 			//else { cout << "i: " << i << " " << "j: " << j << " "; }
 			
 			cout << cellSpacing;
