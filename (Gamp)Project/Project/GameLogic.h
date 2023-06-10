@@ -23,5 +23,7 @@ enum class MAPTYPE
 	WALL = '0', ROAD = '1', ENDL = '2', Caffeine = '3',
 };
 
-void Init(char _map[VERTICAL][HORIZON], PPLAYER _player, PPOS _sttartpos);
-void Update(char _map[VERTICAL][HORIZON], PPLAYER _player);
+void Init(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, PPOS _startPos);
+void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos);
+void GetItme(char item, PPLAYER _playerPos);
+void MakeItem(char item, char _map[VERTICAL][HORIZON]);

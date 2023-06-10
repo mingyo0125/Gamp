@@ -52,51 +52,51 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[18], "011111111111111111111111111102");
 	strcpy_s(_map[19], "000000000000000000000000000002");
 
-	srand((unsigned int)time(NULL));
 
-	int verRand, horiRand;
-	do { verRand = rand() % VERTICAL; }
-	while (verRand == 0 || verRand == 29 || verRand == 30);
-
-	do { horiRand = rand() % HORIZON; } while (horiRand == 0 || horiRand == 19);
-
-	_map[verRand][horiRand] = (char)MAPTYPE::Caffeine;
+	MakeItem((char)MAPTYPE::Caffeine, _map);
 
 }
 
-void Update(char _map[VERTICAL][HORIZON], PPLAYER _pPlayer)
+void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos)
 {
-	_pPlayer->newPos = _pPlayer->playerPos;
+	playerPos->newPos = playerPos->playerPos;
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
-		--_pPlayer->newPos.y;
+		--playerPos->newPos.y;
 		Sleep(10);
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
-		++_pPlayer->newPos.y;
+		++playerPos->newPos.y;
 		Sleep(10);
 	}
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		--_pPlayer->newPos.x;
+		--playerPos->newPos.x;
 		Sleep(10);
 	}
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		++_pPlayer->newPos.x;
+		++playerPos->newPos.x;
 		Sleep(10);
 	}
 
-	_pPlayer->newPos.x = std::clamp(_pPlayer->newPos.x, 0, HORIZON - 2);
-	_pPlayer->newPos.y = std::clamp(_pPlayer->newPos.y, 0, VERTICAL - 1);
+	playerPos->newPos.x = std::clamp(playerPos->newPos.x, 0, HORIZON - 2);
+	playerPos->newPos.y = std::clamp(playerPos->newPos.y, 0, VERTICAL - 1);
 
-	if (_map[_pPlayer->newPos.y][_pPlayer->newPos.x] != (char)MAPTYPE::WALL)
+	if (_map[playerPos->newPos.y][playerPos->newPos.x] != (char)MAPTYPE::WALL)
 	{
-		_pPlayer->playerPos = _pPlayer->newPos;
+		playerPos->playerPos = playerPos->newPos;
 	}
 	Sleep(100);
+
+	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::Caffeine)
+	{
+		GetItme((char)MAPTYPE::Caffeine, playerPos);
+		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+		MakeItem((char)MAPTYPE::Caffeine, _map);
+	}
 }
 
 void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
@@ -126,7 +126,29 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 			cout << cellSpacing;
 		}
 	}
-
 }
+
+void GetItme(char item, PPLAYER _playerPos)
+{
+	if (item == (char)MAPTYPE::Caffeine)
+	{
+		//사운드 재생
+	}
+}
+
+void MakeItem(char item, char _map[VERTICAL][HORIZON])
+{
+	srand((unsigned int)time(NULL));
+
+	int verRand, horiRand;
+	verRand = rand() % VERTICAL;
+	horiRand = rand() % HORIZON;
+
+	verRand = std::clamp(verRand, 1, 28);
+	horiRand = std::clamp(horiRand, 1, 18);
+
+	_map[verRand][horiRand] = item;
+}
+ 
 
 
