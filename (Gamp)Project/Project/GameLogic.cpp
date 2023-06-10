@@ -145,7 +145,7 @@ void MakeItem(char item, char _map[VERTICAL][HORIZON])
 	horiRand = rand() % HORIZON;
 
 	verRand = std::clamp(verRand, 1, 28);
-	horiRand = std::clamp(horiRand, 1, 18);
+	horiRand = std::clamp(horiRand, 1, 17);
 
 	_map[verRand][horiRand] = item;
 }
