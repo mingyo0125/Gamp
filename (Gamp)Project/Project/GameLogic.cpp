@@ -57,9 +57,10 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 
 }
 
-void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos)
+void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, int *hpCnt)
 {
 	playerPos->newPos = playerPos->playerPos;
+
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
@@ -99,7 +100,7 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos)
 	}
 }
 
-void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
+void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int *hpCnt)
 {
 	const string cellSpacing = " ";
 	cout << cellSpacing;
@@ -126,12 +127,26 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player)
 			cout << cellSpacing;
 		}
 	}
+
+	cout << "\n";
+	cout << "\n";
+
+	for (int i = 0; i < 15; i++)
+	{
+		cout << cellSpacing;;
+	}
+
+	for (int i = 0; i < 31; i++)
+	{
+		cout << "■";
+	}
 }
 
 void GetItme(char item, PPLAYER _playerPos)
 {
 	if (item == (char)MAPTYPE::Caffeine)
 	{
+		//hp참
 		//사운드 재생
 	}
 }

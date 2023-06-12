@@ -9,6 +9,7 @@ int main()
 	PLAYER player = {};
 	POS startpos = {};
 	Init(map, &player, &startpos);
+	int hpCnt = 31;
 
 	while (true)
 	{
@@ -17,8 +18,8 @@ int main()
 		//Asciiart();
 		
 		
-		Render(map, &player);
-		Update(map, &player);
+		Render(map, &player, hpCnt);
+		Update(map, &player, hpCnt);
 	
 	
 	}

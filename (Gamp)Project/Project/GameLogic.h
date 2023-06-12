@@ -16,7 +16,7 @@ typedef struct _player
 } PLAYER, * PPLAYER;
 
 void Asciiart();
-void Render(char _map[VERTICAL][HORIZON], PPLAYER _player);
+void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int hpCnt);
 
 enum class MAPTYPE
 {
@@ -24,6 +24,6 @@ enum class MAPTYPE
 };
 
 void Init(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, PPOS _startPos);
-void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos);
+void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, int hpCnt);
 void GetItme(char item, PPLAYER _playerPos);
 void MakeItem(char item, char _map[VERTICAL][HORIZON]);
