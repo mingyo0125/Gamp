@@ -9,7 +9,7 @@ int main()
 	PLAYER player = {};
 	POS startpos = {};
 	Init(map, &player, &startpos);
-	int hpCnt = 31;
+	float hpCnt = 31;
 
 	while (true)
 	{

@@ -57,9 +57,13 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 
 }
 
-void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, int *hpCnt)
+void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt)
 {
 	playerPos->newPos = playerPos->playerPos;
+
+	hpCnt -= 1;
+
+	
 
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
@@ -90,17 +94,18 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, int *hpCnt)
 	{
 		playerPos->playerPos = playerPos->newPos;
 	}
+
 	Sleep(100);
 
 	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::Caffeine)
 	{
-		GetItme((char)MAPTYPE::Caffeine, playerPos);
+		GetItme((char)MAPTYPE::Caffeine, playerPos, hpCnt);
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
 		MakeItem((char)MAPTYPE::Caffeine, _map);
 	}
 }
 
-void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int *hpCnt)
+void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 {
 	const string cellSpacing = " ";
 	cout << cellSpacing;
@@ -136,16 +141,17 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int *hpCnt)
 		cout << cellSpacing;;
 	}
 
-	for (int i = 0; i < 31; i++)
+	for (int i = 0; i < hpCnt; i++)
 	{
 		cout << "■";
 	}
 }
 
-void GetItme(char item, PPLAYER _playerPos)
+void GetItme(char item, PPLAYER _playerPos, float &hpCnt)
 {
 	if (item == (char)MAPTYPE::Caffeine)
 	{
+		hpCnt = 31;
 		//hp참
 		//사운드 재생
 	}
