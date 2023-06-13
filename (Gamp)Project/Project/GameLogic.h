@@ -24,7 +24,7 @@ enum class MAPTYPE
 void Asciiart();
 void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float &hpCnt);
 void Init(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, PPOS _startPos);
-void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, float&hpCnt);
+void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, float&hpCnt, bool &isGameOver);
 void GetItme(char item, PPLAYER _playerPos, float &hpCnt);
 void MakeItem(char item, char _map[VERTICAL][HORIZON]);
-void GameOver();
+void GameOver(bool &isGameOver);

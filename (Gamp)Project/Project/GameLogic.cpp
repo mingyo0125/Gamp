@@ -57,13 +57,17 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 
 }
 
-void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt)
+void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &isGameOver)
 {
 	playerPos->newPos = playerPos->playerPos;
 
 	hpCnt -= 1;
 
-	
+	if (hpCnt <= 0)
+	{
+		GameOver(isGameOver);
+		return;
+	}
 
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
@@ -169,6 +173,11 @@ void MakeItem(char item, char _map[VERTICAL][HORIZON])
 	horiRand = std::clamp(horiRand, 1, 18);
 
 	_map[horiRand][verRand] = item;
+}
+
+void GameOver(bool &isGameOver)
+{
+	isGameOver = true;
 }
  
 

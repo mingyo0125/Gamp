@@ -10,6 +10,7 @@ int main()
 	POS startpos = {};
 	Init(map, &player, &startpos);
 	float hpCnt = 31;
+	bool isGameOver = false;
 
 	while (true)
 	{
@@ -17,9 +18,10 @@ int main()
 		system("cls");
 		//Asciiart();
 		
+		if (isGameOver) { return 0; } //게임 오버
 		
 		Render(map, &player, hpCnt);
-		Update(map, &player, hpCnt);
+		Update(map, &player, hpCnt, isGameOver);
 	
 	
 	}
