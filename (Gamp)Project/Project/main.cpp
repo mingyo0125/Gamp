@@ -18,7 +18,7 @@ int main()
 		system("cls");
 		//Asciiart();
 		
-		if (isGameOver) { return 0; } //게임 오버
+		if (isGameOver) { hpCnt = 31; isGameOver = false; }//게임오버
 		
 		Render(map, &player, hpCnt);
 		Update(map, &player, hpCnt, isGameOver);

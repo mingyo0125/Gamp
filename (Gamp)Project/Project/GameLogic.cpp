@@ -3,6 +3,7 @@
 #include<fcntl.h>
 #include<Windows.h>
 #include<algorithm>
+#include <ctime>
 #include "GameLogic.h"
 #include "Console.h"
 
@@ -53,7 +54,8 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[19], "000000000000000000000000000002");
 
 
-	MakeItem((char)MAPTYPE::Caffeine, _map);
+	MakeItem((char)MAPTYPE::CAFFEINE, _map);
+	MakeItem((char)MAPTYPE::OBSTACLE, _map);
 
 }
 
@@ -70,43 +72,58 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 	}
 
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-	{
-		--playerPos->newPos.y;
-		Sleep(10);
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-	{
-		++playerPos->newPos.y;
-		Sleep(10);
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-	{
-		--playerPos->newPos.x;
-		Sleep(10);
-	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	{
-		++playerPos->newPos.x;
-		Sleep(10);
-	}
+#pragma region  Move
+		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		{
+			--playerPos->newPos.y;
+			Sleep(10);
+		}
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		{
+			++playerPos->newPos.y;
+			Sleep(10);
+		}
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		{
+			--playerPos->newPos.x;
+			Sleep(10);
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		{
+			++playerPos->newPos.x;
+			Sleep(10);
+		}
 
-	playerPos->newPos.x = std::clamp(playerPos->newPos.x, 0, HORIZON - 2);
-	playerPos->newPos.y = std::clamp(playerPos->newPos.y, 0, VERTICAL - 1);
 
-	if (_map[playerPos->newPos.y][playerPos->newPos.x] != (char)MAPTYPE::WALL)
+
+		playerPos->newPos.x = std::clamp(playerPos->newPos.x, 0, HORIZON - 2);
+		playerPos->newPos.y = std::clamp(playerPos->newPos.y, 0, VERTICAL - 1);
+
+		if (_map[playerPos->newPos.y][playerPos->newPos.x] != (char)MAPTYPE::WALL)
+		{
+			playerPos->playerPos = playerPos->newPos;
+		}
+
+		Sleep(100);
+	
+
+#pragma endregion
+
+	
+
+	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::CAFFEINE)
 	{
-		playerPos->playerPos = playerPos->newPos;
-	}
-
-	Sleep(100);
-
-	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::Caffeine)
-	{
-		GetItme((char)MAPTYPE::Caffeine, playerPos, hpCnt);
+		GetItme((char)MAPTYPE::CAFFEINE, playerPos, hpCnt);
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
-		MakeItem((char)MAPTYPE::Caffeine, _map);
+		MakeItem((char)MAPTYPE::CAFFEINE, _map);
 	}
+	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::OBSTACLE)
+	{
+		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+		GetItme((char)MAPTYPE::OBSTACLE, playerPos, hpCnt);
+		MakeItem((char)MAPTYPE::OBSTACLE, _map);
+	}
+
 }
 
 void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
@@ -123,9 +140,10 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 			{
 				cout << "●";
 			}
-			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << "*"; }
+			else if (_map[i][j] == (char)MAPTYPE::CAFFEINE) { cout << "*"; }
 			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
+			else if (_map[i][j] == (char)MAPTYPE::OBSTACLE) { cout << "#"; }
 			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
 			/*else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << (char)MAPTYPE::WALL; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << (char)MAPTYPE::ROAD; }
@@ -153,11 +171,15 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 
 void GetItme(char item, PPLAYER _playerPos, float &hpCnt)
 {
-	if (item == (char)MAPTYPE::Caffeine)
+	if (item == (char)MAPTYPE::CAFFEINE)
 	{
 		hpCnt = 31;
-		//hp참
 		//사운드 재생
+	}
+	else if (item == (char)MAPTYPE::OBSTACLE)
+	{
+		hpCnt -= 5;
+		//사운드재생
 	}
 }
 

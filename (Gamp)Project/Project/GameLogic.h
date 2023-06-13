@@ -18,7 +18,7 @@ typedef struct _player
 
 enum class MAPTYPE
 {
-	WALL = '0', ROAD = '1', ENDL = '2', Caffeine = '3',
+	WALL = '0', ROAD = '1', ENDL = '2', CAFFEINE = '3', OBSTACLE = '4',
 };
 
 void Asciiart();
