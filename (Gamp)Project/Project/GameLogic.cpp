@@ -54,7 +54,7 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[19], "000000000000000000000000000002");
 
 
-	MakeItem((char)MAPTYPE::CAFFEINE, _map);
+	MakeItem((char)MAPTYPE::GODAMIN, _map);
 	MakeItem((char)MAPTYPE::OBSTACLE, _map);
 
 }
@@ -111,11 +111,11 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 
 	
 
-	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::CAFFEINE)
+	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::GODAMIN)
 	{
-		GetItme((char)MAPTYPE::CAFFEINE, playerPos, hpCnt);
+		GetItme((char)MAPTYPE::GODAMIN, playerPos, hpCnt);
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
-		MakeItem((char)MAPTYPE::CAFFEINE, _map);
+		MakeItem((char)MAPTYPE::GODAMIN, _map);
 	}
 	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::OBSTACLE)
 	{
@@ -140,7 +140,7 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 			{
 				cout << "●";
 			}
-			else if (_map[i][j] == (char)MAPTYPE::CAFFEINE) { cout << "*"; }
+			else if (_map[i][j] == (char)MAPTYPE::GODAMIN) { cout << "*"; }
 			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
 			else if (_map[i][j] == (char)MAPTYPE::OBSTACLE) { cout << "#"; }
@@ -171,7 +171,7 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 
 void GetItme(char item, PPLAYER _playerPos, float &hpCnt)
 {
-	if (item == (char)MAPTYPE::CAFFEINE)
+	if (item == (char)MAPTYPE::GODAMIN)
 	{
 		hpCnt = 31;
 		//사운드 재생
