@@ -53,10 +53,8 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	strcpy_s(_map[18], "011111111111111111111111111102");
 	strcpy_s(_map[19], "000000000000000000000000000002");
 
-
-	MakeItem((char)MAPTYPE::GODAMIN, _map);
 	MakeItem((char)MAPTYPE::OBSTACLE, _map);
-
+	MakeItem((char)MAPTYPE::CAFFEINE, _map);
 }
 
 void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &isGameOver)
@@ -70,7 +68,6 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 		GameOver(isGameOver);
 		return;
 	}
-
 
 #pragma region  Move
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
@@ -94,8 +91,6 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 			Sleep(10);
 		}
 
-
-
 		playerPos->newPos.x = std::clamp(playerPos->newPos.x, 0, HORIZON - 2);
 		playerPos->newPos.y = std::clamp(playerPos->newPos.y, 0, VERTICAL - 1);
 
@@ -109,13 +104,13 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 
 #pragma endregion
 
-	
+	MakeItem((char)MAPTYPE::OBSTACLE, _map);
 
-	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::GODAMIN)
+	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::CAFFEINE)
 	{
-		GetItme((char)MAPTYPE::GODAMIN, playerPos, hpCnt);
+		GetItme((char)MAPTYPE::CAFFEINE, playerPos, hpCnt);
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
-		MakeItem((char)MAPTYPE::GODAMIN, _map);
+		MakeItem((char)MAPTYPE::CAFFEINE, _map);
 	}
 	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::OBSTACLE)
 	{
@@ -123,7 +118,6 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 		GetItme((char)MAPTYPE::OBSTACLE, playerPos, hpCnt);
 		MakeItem((char)MAPTYPE::OBSTACLE, _map);
 	}
-
 }
 
 void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
@@ -140,16 +134,12 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 			{
 				cout << "●";
 			}
-			else if (_map[i][j] == (char)MAPTYPE::GODAMIN) { cout << "*"; }
+			else if (_map[i][j] == (char)MAPTYPE::OBSTACLE) { cout << "#"; }
+			else if (_map[i][j] == (char)MAPTYPE::CAFFEINE) { cout << "*"; }
 			else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << "■"; }
 			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << " "; }
-			else if (_map[i][j] == (char)MAPTYPE::OBSTACLE) { cout << "#"; }
 			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }
-			/*else if (_map[i][j] == (char)MAPTYPE::WALL) { cout << (char)MAPTYPE::WALL; }
-			else if (_map[i][j] == (char)MAPTYPE::ROAD) { cout << (char)MAPTYPE::ROAD; }
-			else if (_map[i][j] == (char)MAPTYPE::Caffeine) { cout << (char)MAPTYPE::Caffeine; }
-			else if (_map[i][j] == (char)MAPTYPE::ENDL) { cout << "\n"; }*/
-			//else { cout << "i: " << i << " " << "j: " << j << " "; }
+			
 			
 			cout << cellSpacing;
 		}
@@ -171,7 +161,7 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 
 void GetItme(char item, PPLAYER _playerPos, float &hpCnt)
 {
-	if (item == (char)MAPTYPE::GODAMIN)
+	if (item == (char)MAPTYPE::CAFFEINE)
 	{
 		hpCnt = 31;
 		//사운드 재생
@@ -188,13 +178,23 @@ void MakeItem(char item, char _map[VERTICAL][HORIZON])
 	srand((unsigned int)time(NULL));
 
 	int verRand, horiRand;
+
 	verRand = rand() % VERTICAL;
 	horiRand = rand() % HORIZON;
 
-	verRand = std::clamp(verRand, 1, 28);
-	horiRand = std::clamp(horiRand, 1, 18);
+	verRand = std::clamp(verRand, 1, 27);
+	horiRand = std::clamp(horiRand, 1, 17);
 
-	_map[horiRand][verRand] = item;
+	if (item == (char)MAPTYPE::CAFFEINE)
+	{
+		_map[horiRand][verRand] = item;
+	}
+	else
+	{
+		_map[horiRand + 1][verRand + 1] = item;
+
+	}
+
 }
 
 void GameOver(bool &isGameOver)
