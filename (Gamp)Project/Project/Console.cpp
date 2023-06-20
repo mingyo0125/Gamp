@@ -21,3 +21,9 @@ void ConsoleCursor(bool _bVis, DWORD _dwSize)
 	curinfo.dwSize = _dwSize;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curinfo);
 }
+
+void SetColor(int _color, int _bgcolor)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
+		(_bgcolor << 4) | _color);
+}
