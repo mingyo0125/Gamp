@@ -157,9 +157,10 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 		cout << cellSpacing;;
 	}
 
-	for (int i = 0; i < hpCnt; i++)
+	for (int i = 0; i < 31; i++)
 	{
-		cout << "■";
+		if (i <= hpCnt) { cout << "■"; }
+		else { cout << " "; }
 	}
 }
 

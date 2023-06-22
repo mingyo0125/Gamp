@@ -15,9 +15,8 @@ int main()
 	while (true)
 	{
 		Gotoxy(0, 0);
-		system("cls");
+//		system("cls");
 		//Asciiart();
-		
 		if (isGameOver) { hpCnt = 31; isGameOver = false; }//게임오버
 		
 		Render(map, &player, hpCnt);
