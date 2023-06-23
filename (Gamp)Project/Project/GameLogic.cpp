@@ -56,7 +56,7 @@ void Init(char _map[VERTICAL][HORIZON], PPLAYER playerPos, PPOS startPos)
 	MakeItem((char)MAPTYPE::CAFFEINE, _map);
 }
 
-void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &isGameOver)
+void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, int &hpCnt, bool &isGameOver)
 {
 	playerPos->newPos = playerPos->playerPos;
 
@@ -103,7 +103,22 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 
 #pragma endregion
 
-	MakeItem((char)MAPTYPE::OBSTACLE, _map);
+	//랜덤처리
+	srand((unsigned int)time(NULL));
+	int randNum = rand() % 4;
+
+	switch (randNum)
+	{
+	case 1:
+		MakeItem((char)MAPTYPE::CHERRY, _map);
+		break;
+	case 2:
+		MakeItem((char)MAPTYPE::SPINACH, _map);
+		break;
+	case 3:
+		MakeItem((char)MAPTYPE::ALMOND, _map);
+		break;
+	}
 
 	if (_map[playerPos->newPos.y][playerPos->newPos.x] == (char)MAPTYPE::CAFFEINE)
 	{
@@ -111,15 +126,28 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, float&hpCnt, bool &
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
 		MakeItem((char)MAPTYPE::CAFFEINE, _map);
 	}
-	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::OBSTACLE)
+	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::CHERRY)
 	{
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
-		GetItme((char)MAPTYPE::OBSTACLE, playerPos, hpCnt);
-		MakeItem((char)MAPTYPE::OBSTACLE, _map);
+		GetItme((char)MAPTYPE::CHERRY, playerPos, hpCnt);
+		MakeItem((char)MAPTYPE::CHERRY, _map);
 	}
+	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::SPINACH)
+	{
+		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+		GetItme((char)MAPTYPE::SPINACH, playerPos, hpCnt);
+		MakeItem((char)MAPTYPE::SPINACH, _map);
+	}
+	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::ALMOND)
+	{
+		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+		GetItme((char)MAPTYPE::ALMOND, playerPos, hpCnt);
+		MakeItem((char)MAPTYPE::ALMOND, _map);
+	}
+
 }
 
-void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
+void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int &hpCnt)
 {
 	const string cellSpacing = " ";
 	cout << cellSpacing;
@@ -133,7 +161,24 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 			{
 				cout << "●";
 			}
-			else if (_map[i][j] == (char)MAPTYPE::OBSTACLE) { cout << "#"; }
+			else if(_map[i][j] == (char)MAPTYPE::CHERRY)
+			{
+				SetColor((int)COLOR::RED, (int)COLOR::BLACK);
+				cout << "●";
+				SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
+			}
+			else if (_map[i][j] == (char)MAPTYPE::SPINACH)
+			{
+				SetColor((int)COLOR::GREEN, (int)COLOR::BLACK);
+				cout << "♣";
+				SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
+			}
+			else if (_map[i][j] == (char)MAPTYPE::ALMOND)
+			{
+				SetColor((int)FOREGROUND_RED | FOREGROUND_GREEN, (int)COLOR::BLACK);
+				cout << "β";
+				SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
+			}
 			else if (_map[i][j] == (char)MAPTYPE::CAFFEINE)
 			{
 				SetColor((int)FOREGROUND_RED | FOREGROUND_GREEN, (int)COLOR::BLUE);
@@ -164,18 +209,30 @@ void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float&hpCnt)
 	}
 }
 
-void GetItme(char item, PPLAYER _playerPos, float &hpCnt)
+void GetItme(char item, PPLAYER _playerPos, int &hpCnt)
 {
 	if (item == (char)MAPTYPE::CAFFEINE)
 	{
 		hpCnt += 17;
+		hpCnt = std::clamp(hpCnt, 0, 31);
 		//사운드 재생
 	}
-	else if (item == (char)MAPTYPE::OBSTACLE)
+	else if (item == (char)MAPTYPE::CHERRY)
+	{
+		hpCnt -= 3;
+		//사운드재생
+	}
+	else if (item == (char)MAPTYPE::SPINACH)
 	{
 		hpCnt -= 5;
 		//사운드재생
 	}
+	else if (item == (char)MAPTYPE::ALMOND)
+	{
+		hpCnt -= 7;
+		//사운드재생
+	}
+
 }
 
 void MakeItem(char item, char _map[VERTICAL][HORIZON])
@@ -197,7 +254,6 @@ void MakeItem(char item, char _map[VERTICAL][HORIZON])
 	else
 	{
 		_map[horiRand + 1][verRand + 1] = item;
-
 	}
 
 }

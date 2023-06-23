@@ -18,13 +18,13 @@ typedef struct _player
 
 enum class MAPTYPE
 {
-	WALL = '0', ROAD = '1', ENDL = '2', CAFFEINE = '3', OBSTACLE = '4',
+	WALL = '0', ROAD = '1', ENDL = '2', CAFFEINE = '3', OBSTACLE = '4', CHERRY = '5', SPINACH = '6', ALMOND = '7'
 };
 
 void Asciiart();
-void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, float &hpCnt);
+void Render(char _map[VERTICAL][HORIZON], PPLAYER _player, int &hpCnt);
 void Init(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, PPOS _startPos);
-void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, float&hpCnt, bool &isGameOver);
-void GetItme(char item, PPLAYER _playerPos, float &hpCnt);
+void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, int &hpCnt, bool &isGameOver);
+void GetItme(char item, PPLAYER _playerPos, int &hpCnt);
 void MakeItem(char item, char _map[VERTICAL][HORIZON]);
 void GameOver(bool &isGameOver);

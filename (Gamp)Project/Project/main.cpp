@@ -9,13 +9,13 @@ int main()
 	PLAYER player = {};
 	POS startpos = {};
 	Init(map, &player, &startpos);
-	float hpCnt = 31;
+	int hpCnt = 31;
 	bool isGameOver = false;
 
 	while (true)
 	{
 		Gotoxy(0, 0);
-//		system("cls");
+		//system("cls");
 		//Asciiart();
 		if (isGameOver) { hpCnt = 31; isGameOver = false; }//게임오버
 		
