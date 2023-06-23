@@ -34,6 +34,16 @@ int main()
 			}
 			return 0;
 		}
+		
+	}
+	
+	system("cls");
+
+	while (true)
+	{
+		Gotoxy(0, 0);
+		Render(map, &player, hpCnt);
+		Update(map, &player, hpCnt, isGameOver);
 
 		if (isGameOver)
 		{
@@ -48,10 +58,5 @@ int main()
 			}
 			return 0;
 		}
-		
-		Render(map, &player, hpCnt);
-		Update(map, &player, hpCnt, isGameOver);
-	
-	
 	}
 }
