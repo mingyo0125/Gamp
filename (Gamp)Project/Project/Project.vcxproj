@@ -131,10 +131,12 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h" />
     <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
