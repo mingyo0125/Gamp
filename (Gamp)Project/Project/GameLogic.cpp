@@ -2,10 +2,13 @@
 #include<io.h>
 #include<fcntl.h>
 #include<Windows.h>
+#include <mmsystem.h>
 #include<algorithm>
 #include <ctime>
 #include "GameLogic.h"
 #include "Console.h"
+
+#pragma comment(lib, "winmm.lib")
 
 using namespace std;
 void Asciiart()
@@ -235,27 +238,32 @@ void GetItme(char item, PPLAYER _playerPos, int &hpCnt)
 {
 	if (item == (char)MAPTYPE::COFFEE)
 	{
-		hpCnt += 13;
+		hpCnt += 15;
 		hpCnt = std::clamp(hpCnt, 0, 31);
+		PlaySound(TEXT("545238__mr_fritz__item-sparkle"), 0, SND_FILENAME | SND_ASYNC);
 		//사운드 재생
 	}
 	else if(item == (char)MAPTYPE::MONSTER)
 	{
+		PlaySound(TEXT("545238__mr_fritz__item-sparkle"), 0, SND_FILENAME | SND_ASYNC);
 		hpCnt += 30;
 		//사운드 재생
 	}
 	else if (item == (char)MAPTYPE::CHERRY)
 	{
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
 		hpCnt -= 3;
 		//사운드재생
 	}
 	else if (item == (char)MAPTYPE::SPINACH)
 	{
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
 		hpCnt -= 5;
 		//사운드재생
 	}
 	else if (item == (char)MAPTYPE::ALMOND)
 	{
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
 		hpCnt -= 7;
 		//사운드재생
 	}

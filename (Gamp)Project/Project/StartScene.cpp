@@ -74,7 +74,6 @@ int KeyController()
 void GameInfo()
 {
 	system("cls");
-	cout << endl << endl;
 	cout << "[조작법]" << endl;
 	cout << "메뉴 이동: 방향키" << endl;
 	cout << "메뉴 선택: 스페이스바" << endl;
@@ -108,7 +107,7 @@ void GameInfo()
 	SetColor((int)FOREGROUND_RED | FOREGROUND_GREEN, (int)COLOR::BLUE);
 	cout << "*";
 	SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
-	cout << "  편의점에서 누구나 쉽게 구매 가능한 캔커피입니다\n";
+	cout << "  편의점에서 누구나 쉽게 구매 가능한 캔커피이다\n";
 
 
 	SetColor((int)COLOR::GREEN, (int)COLOR::BLACK);
@@ -116,7 +115,7 @@ void GameInfo()
 	SetColor((int)COLOR::GREEN, (int)FOREGROUND_INTENSITY);
 	cout << "m";
 	SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
-	cout << "  에너지드링크 중 가장 인기 있는상품 입니다. 효과가 상당합니다.\n\n";
+	cout << "  에너지드링크 중 가장 인기 있는상품이다. 커피보다 효과가 좋다.\n\n";
 
 	cout << "나가기 : Space";
 
