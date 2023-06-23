@@ -148,18 +148,21 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER playerPos, int &hpCnt, bool &i
 	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::CHERRY)
 	{
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+		
 		GetItme((char)MAPTYPE::CHERRY, playerPos, hpCnt);
 		MakeItem((char)MAPTYPE::CHERRY, _map);
 	}
 	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::SPINACH)
 	{
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+
 		GetItme((char)MAPTYPE::SPINACH, playerPos, hpCnt);
 		MakeItem((char)MAPTYPE::SPINACH, _map);
 	}
 	else if (_map[playerPos->playerPos.y][playerPos->playerPos.x] == (char)MAPTYPE::ALMOND)
 	{
 		_map[playerPos->newPos.y][playerPos->newPos.x] = (char)MAPTYPE::ROAD;
+
 		GetItme((char)MAPTYPE::ALMOND, playerPos, hpCnt);
 		MakeItem((char)MAPTYPE::ALMOND, _map);
 	}
@@ -240,32 +243,35 @@ void GetItme(char item, PPLAYER _playerPos, int &hpCnt)
 	{
 		hpCnt += 15;
 		hpCnt = std::clamp(hpCnt, 0, 31);
-		PlaySound(TEXT("545238__mr_fritz__item-sparkle"), 0, SND_FILENAME | SND_ASYNC);
 		//사운드 재생
+		PlaySound(TEXT("545238__mr_fritz__item-sparkle"), 0, SND_FILENAME | SND_ASYNC);
 	}
 	else if(item == (char)MAPTYPE::MONSTER)
 	{
+		//사운드 재생
 		PlaySound(TEXT("545238__mr_fritz__item-sparkle"), 0, SND_FILENAME | SND_ASYNC);
 		hpCnt += 30;
-		//사운드 재생
 	}
 	else if (item == (char)MAPTYPE::CHERRY)
 	{
-		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
-		hpCnt -= 3;
 		//사운드재생
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
+		HitEffect();
+		hpCnt -= 3;
 	}
 	else if (item == (char)MAPTYPE::SPINACH)
 	{
-		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
-		hpCnt -= 5;
 		//사운드재생
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
+		HitEffect();
+		hpCnt -= 5;
 	}
 	else if (item == (char)MAPTYPE::ALMOND)
 	{
-		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
-		hpCnt -= 7;
 		//사운드재생
+		PlaySound(TEXT("690623__guinamun__item-wag"), 0, SND_FILENAME | SND_ASYNC);
+		HitEffect();
+		hpCnt -= 7;
 	}
 
 }
@@ -300,6 +306,22 @@ void MakeItem(char item, char _map[VERTICAL][HORIZON])
 void GameOver(bool &isGameOver)
 {
 	isGameOver = true;
+}
+
+void HitEffect()
+{
+	SetColor((int)COLOR::RED, (int)COLOR::RED);
+	system("cls");
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			cout << "■" << endl;
+		}
+	}
+	Sleep(10);
+	SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
+	system("cls");
 }
  
 

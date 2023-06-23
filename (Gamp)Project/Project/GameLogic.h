@@ -28,3 +28,4 @@ void Update(char _map[VERTICAL][HORIZON], PPLAYER _playerPos, int &hpCnt, bool &
 void GetItme(char item, PPLAYER _playerPos, int &hpCnt);
 void MakeItem(char item, char _map[VERTICAL][HORIZON]);
 void GameOver(bool &isGameOver);
+void HitEffect();
