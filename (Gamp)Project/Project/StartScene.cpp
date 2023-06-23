@@ -116,15 +116,10 @@ void GameInfo()
 	SetColor((int)COLOR::GREEN, (int)FOREGROUND_INTENSITY);
 	cout << "m";
 	SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
-	cout << "  에너지드링크 중 가장 인기 있는상품 입니다\n\n";
+	cout << "  에너지드링크 중 가장 인기 있는상품 입니다. 효과가 상당합니다.\n\n";
 
 	cout << "나가기 : Space";
 
-
-
-
-
-	
 	SetColor((int)COLOR::WHITE, (int)COLOR::BLACK);
 	
 	while (true)
